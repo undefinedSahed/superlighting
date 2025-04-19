@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
-const CategoryList = dynamic(() => import("@/components/shop/CategoryList"));
 const FilterSidebar = dynamic(() => import("@/components/shop/FilterSidebar"));
 import dynamic from "next/dynamic";
+import CategoryList from "./CategoryList";
 
-const ListItems = () => {
+const ListItems = ({ onSortChange, onPriceChange, maxProductPrice }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="flex">
         <div className="md:hidden block relative">
@@ -27,7 +26,11 @@ const ListItems = () => {
           ✖ Close
         </button>
         <CategoryList />
-        <FilterSidebar />
+        <FilterSidebar
+          onSortChange={onSortChange}
+          onPriceChange={onPriceChange}
+          maxProductPrice={maxProductPrice} 
+        />
       </div>
     </div>
   );

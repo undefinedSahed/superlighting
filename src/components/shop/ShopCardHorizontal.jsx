@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { FaStar, FaRegHeart, FaShoppingCart } from 'react-icons/fa'; // Assuming you might want icons
+import { FaStar, FaRegHeart, FaShoppingCart } from 'react-icons/fa'; 
 
 const ShopCardHorizontal = ({ item }) => {
   const renderStars = (count) => {
@@ -14,8 +14,8 @@ const ShopCardHorizontal = ({ item }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center border border-gray-200 rounded-md p-4 mb-4 gap-4 w-full hover:shadow-md transition-shadow duration-200">
-      <div className="flex-shrink-0 w-full md:w-40 h-40 relative mb-4 md:mb-0">
+    <div className="flex md:items-center border border-gray-200 rounded-md p-4 mb-4 gap-4 w-full hover:shadow-md transition-shadow duration-200">
+      <div className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 relative mb-4 md:mb-0">
         <Image
           src={item.image}
           alt={item.title}
@@ -25,7 +25,8 @@ const ShopCardHorizontal = ({ item }) => {
         />
       </div>
 
-      <div className="flex-grow text-center md:text-left">
+     <div className="md:flex">
+     <div className="flex-grow md:text-left">
         <h3 className="text-lg font-semibold text-gray-800 mb-1">{item.title}</h3>
         <div className="flex items-center justify-center md:justify-start mb-2">
           {renderStars(item.stars)}
@@ -50,6 +51,7 @@ const ShopCardHorizontal = ({ item }) => {
            <FaRegHeart /> Wishlist
          </button>
        </div>
+     </div>
     </div>
   );
 };
