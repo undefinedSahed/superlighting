@@ -1,9 +1,9 @@
 "use client"
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react'; 
 import dynamic from 'next/dynamic'
 const CategoriesShop = dynamic(()=> import('@/components/shop/ShopCard'))
 const CategoriesShort = dynamic(()=> import('@/components/shop/Short'))
-const CategoriesListItems = dynamic(()=> import('@/components/shop/ListItems'))
+const ListItems = dynamic(()=> import('@/components/shop/ListItems')) // Import ListItems
 const PaginationControls = dynamic(() => import('@/components/shop/PaginationControls'));
 const CategoriesShopListItem = dynamic(() => import('@/components/shop/ShopCardHorizontal')); // Import the new list item component
 import shop1 from '../../../public/assets/shop1.png'
@@ -12,8 +12,9 @@ import shop3 from '../../../public/assets/shop3.png'
 const CategoriesComponents = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortCriteria, setSortCriteria] = useState('default'); // Add state for sorting
-  const [viewMode, setViewMode] = useState('grid'); 
-  const itemsPerPage = 6; 
+  const [viewMode, setViewMode] = useState('grid');
+  const itemsPerPage = 6;
+
   const shop = [
     {
       id: 1,
@@ -124,15 +125,22 @@ const CategoriesComponents = () => {
       stars: 4,
     },
   ];
-  // Sorting Logic
-  const sortedShop = [...shop].sort((a, b) => {
+
+  const actualMaxPrice = Math.max(...shop.map(item => item.price), 0); 
+  const [maxPrice, setMaxPrice] = useState(actualMaxPrice); 
+
+  const filteredShop = shop.filter(item => item.price <= maxPrice); 
+
+  const sortedShop = [...filteredShop].sort((a, b) => {
     switch (sortCriteria) {
-      case 'new':
-        return b.id - a.id;
-      case 'low':
+      case 'price_asc': 
+      case 'low': 
         return a.price - b.price;
-      case 'high':
+      case 'price_desc': 
+      case 'high': 
         return b.price - a.price;
+      case 'new':
+         return b.id - a.id; 
       case 'default':
       default:
         return a.id - b.id;
@@ -143,7 +151,7 @@ const CategoriesComponents = () => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, totalItems); // Ensure endIndex doesn't exceed totalItems
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems); 
   const currentItems = sortedShop.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
@@ -161,12 +169,22 @@ const CategoriesComponents = () => {
     setViewMode(mode);
   };
 
+  
+  const handlePriceChange = (newPrice) => {
+    setMaxPrice(parseInt(newPrice, 10)); 
+    setCurrentPage(1); 
+  };
+
   return (
     <section className='lg:py-20 py-12 bg-white'>
         <div className="container mx-auto lg:px-0 px-4">
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_5fr] md:gap-12 gap-3">
                 <div className="">
-                   <CategoriesListItems/>
+                   <ListItems
+                     onSortChange={handleSortChange}
+                     onPriceChange={handlePriceChange}
+                     maxProductPrice={actualMaxPrice} 
+                   />
                 </div>
                 <div className="">
                   <CategoriesShort

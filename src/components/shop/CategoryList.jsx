@@ -11,16 +11,13 @@ const allProducts = [
 ];
 
 const categories = [
-  { name: "All", count: 48 },
-  { name: "Sideboards", count: 12 },
-  { name: "Cabinet", count: 12 },
-  { name: "Sofa", count: 12 },
+  { name: "Categories", count: 48 },
 ];
 
 const CategoryList = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Categories");
   const filteredProducts =
-    selectedCategory === "All"
+    selectedCategory === "Categories"
       ? allProducts
       : allProducts.filter((item) => item.category === selectedCategory);
 
