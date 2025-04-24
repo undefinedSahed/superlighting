@@ -66,7 +66,7 @@ const Footer = () => {
               <li className="text-[#9DCA42] font-semibold text-[16px] pb-2">Get In Touch</li>
               <li className="text-[#727272] flex items-center gap-2"><Link href="/about-us">House: 110, Road: 02, Block: D, Pallabi 2nd Project, Rupnagar, Mirpur</Link></li>
               <li className="text-[#727272] text-[16px] flex gap-2 items-center"><span><IoCallOutline/></span><a href="callto:+8801724188240">+880 1724-188240</a></li>
-              <li className="text-[#727272] text-[16px] flex items-center gap-2"><span><IoMailOpenOutline/></span><a href="mailto:superlightingbd1..gmail.com">superlightingbd1..gmail.com</a></li>
+              <li className="text-[#727272] text-[16px] flex items-center gap-2"><span><IoMailOpenOutline/></span><a href="mailto:superlightingbd1..gmail.com">superlightingbd1@gmail.com</a></li>
             </ul>
           </div>
         </div>

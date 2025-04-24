@@ -4,7 +4,7 @@ import { IoStar } from "react-icons/io5";
 import { FaCartPlus } from "react-icons/fa6";
 import { FaRegEye, FaRegHeart } from "react-icons/fa";
 
-const CategoriesShop = ({item}) => {
+const ShopCard = ({item}) => {
   const icon =[
     {
       id: 1,
@@ -38,25 +38,21 @@ const CategoriesShop = ({item}) => {
     },
     {
       id: 3,
-      icon: <FaRegHeart />
-    },
-    {
-      id: 4,
       icon: <FaRegEye />
     }
   ]
   return (
     <div className="mt-5">
-      <div className="relative group">
+      <div className="relative group overflow-hidden">
         <Image
           src={item.image}
           alt="Solex Sofa"
           width={328}
           height={328}
           layout="responsive"
-          className="rounded-lg w-full h-auto"
+          className="rounded-lg w-full h-auto object-cover"
         />
-        <div className="flex absolute bottom-4 left-1/2 -translate-x-1/2 space-x-3 opacity-0 group-hover:opacity-100 transition duration-300">
+        <div className="flex absolute bottom-4 left-1/2 -translate-x-1/2 space-x-3 opacity-0 group-hover:opacity-100 transition duration-500">
           {hoverIcon.map((item) => (
             <div
               key={item.id}
@@ -80,11 +76,11 @@ const CategoriesShop = ({item}) => {
         <p className="text-sm text-gray-500 mt-1">({item.reviews} Reviews)</p>
         </div>
         <p className="md:text-xl text-[18px] font-semibold text-gray-900 mt-2">
-          ${item.price} <span className="text-gray-400 line-through text-sm md:ml-1">${item.discount}</span>
+          ৳{item.price} <span className="text-gray-400 line-through text-sm md:ml-1">${item.discount}</span>
         </p>
       </div>
     </div>
   );
 };
 
-export default CategoriesShop;
+export default ShopCard;
