@@ -16,7 +16,7 @@ const Header = () => {
           </div>
             <div className='flex gap-1 items-center'>
               <MdOutlineMail />
-              <a href='mailto:superlightingbd..gmail.com'>superlightingbd..gmail.com</a>
+              <a href='mailto:superlightingbd..gmail.com'>superlightingbd1@gmail.com</a>
             </div>
           <div className='flex gap-2'>
             <p><Link href="#">EN</Link></p>

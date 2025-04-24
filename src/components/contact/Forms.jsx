@@ -60,15 +60,15 @@ const Forms = () => {
 
                         
                         <div className="flex flex-col md:flex-row p-4 gap-4">
-                            <input type="text" name="name" aria-label='name' placeholder="Name*" 
+                            <input required type="text" name="name" aria-label='name' placeholder="Name*" 
                                    className="border-2 border-gray-200 p-3 w-full" />
-                            <input type="phone" name="phone" aria-label='phone' placeholder="Phone Number*" 
+                            <input required type="phone" name="phone" aria-label='phone' placeholder="Phone Number*" 
                                    className="border-2 border-gray-200 p-3 w-full" />
                         </div>
 
                         
                         <div className="p-4 w-full">
-                            <input type="email" name="email" aria-label='email' placeholder="Email *" 
+                            <input required type="email" name="email" aria-label='email' placeholder="Email *" 
                                    className="border-2 border-gray-200 p-3 w-full" />
                         </div>
 
@@ -81,7 +81,7 @@ const Forms = () => {
                         
                         <div className="flex flex-col md:flex-row p-4 gap-4 items-center">
                             <div className="w-full flex items-center gap-2">
-                                <input type="checkbox" name="checkbox" id="checkbox" />
+                                <input required type="checkbox" name="checkbox" id="checkbox" />
                                 <label htmlFor="checkbox" className="text-sm text-gray-400">
                                     I have read and agree
                                 </label>
