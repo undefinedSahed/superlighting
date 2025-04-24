@@ -1,10 +1,26 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import thank from '../../../public/assets/thank.png';
 import Image from "next/image";
 
-const FilterSidebar = () => {
+// Accept maxProductPrice prop
+const FilterSidebar = ({ onSortChange, onPriceChange, maxProductPrice = 1000 }) => { // Default to 1000 if prop not provided
     const materials = ["Wood", "Plastique", "Wood Industry", "Wood Incense"];
+    const [priceValue, setPriceValue] = useState(maxProductPrice);
+
+    useEffect(() => {
+        setPriceValue(maxProductPrice);
+    }, [maxProductPrice]);
+
+
+    const handlePriceChange = (event) => {
+        const newPrice = event.target.value;
+        setPriceValue(newPrice);
+        if (onPriceChange) {
+            onPriceChange(newPrice); 
+        }
+    };
+
     return (
         <div className="mt-8  w-full">
             <div className="flex justify-between items-center mb-4">
@@ -19,11 +35,16 @@ const FilterSidebar = () => {
                 <input
                     type="range"
                     name="price"
-                    className="w-full text-black focus:ring-0"
+                    min="20" 
+                    max={maxProductPrice} 
+                    step="10" 
+                    value={priceValue} 
+                    onChange={handlePriceChange} 
+                    className="w-full text-black focus:ring-0 accent-black" // Added accent color
                 />
                 <div className="flex justify-between">
                     <p>$20</p>
-                    <p>$100</p>
+                    <p>${priceValue}</p> 
                 </div>
             </div>
             <div className="mb-4">
@@ -39,6 +60,7 @@ const FilterSidebar = () => {
                     </div>
                 ))}
             </div>
+
             <button
                 className="w-full mt-4 bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition"
             >
